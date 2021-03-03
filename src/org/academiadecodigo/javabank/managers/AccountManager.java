@@ -72,6 +72,16 @@ public class AccountManager {
         accountMap.get(id).debit(amount);
     }
 
+    public void printAccountNums(){
+        for(Account account : accountMap.values()){
+            System.out.println("Account: " + account.getId() + " ---- " + account.getAccountType() + " ---- balance: " + account.getBalance() );
+        }
+    }
+
+    public int accountsAmount(){
+        return accountMap.size();
+    }
+
     /**
      * Performs a transfer between two {@link Account} if possible
      *
@@ -90,4 +100,5 @@ public class AccountManager {
             dstAccount.credit(amount);
         }
     }
+
 }
