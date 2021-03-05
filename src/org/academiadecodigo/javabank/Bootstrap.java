@@ -28,6 +28,9 @@ public class Bootstrap {
         AccountManager accountManager = new AccountManager();
         bank.setAccountManager(accountManager);
 
+
+
+
         Customer c1 = new Customer(1, "Rui");
         Customer c2 = new Customer(2, "Sergio");
         Customer c3 = new Customer(3, "Bruno");
