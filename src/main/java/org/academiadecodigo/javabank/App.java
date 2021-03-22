@@ -1,6 +1,7 @@
 package org.academiadecodigo.javabank;
 
 import org.academiadecodigo.javabank.controller.Controller;
+import org.academiadecodigo.javabank.controller.LoginController;
 import org.academiadecodigo.javabank.persistence.JpaBootstrap;
 import org.academiadecodigo.javabank.persistence.TransactionManager;
 import org.academiadecodigo.javabank.persistence.dao.jpa.JpaAccountDao;
@@ -10,6 +11,8 @@ import org.academiadecodigo.javabank.persistence.jpa.JpaTransactionManager;
 import org.academiadecodigo.javabank.services.AccountServiceImpl;
 import org.academiadecodigo.javabank.services.AuthServiceImpl;
 import org.academiadecodigo.javabank.services.CustomerServiceImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -17,22 +20,28 @@ public class App {
 
     public static void main(String[] args) {
 
-        JpaBootstrap jpa = new JpaBootstrap();
+        /*JpaBootstrap jpa = new JpaBootstrap();
         EntityManagerFactory emf = jpa.start();
 
         JpaSessionManager sm = new JpaSessionManager(emf);
         TransactionManager tx = new JpaTransactionManager(sm);
 
         App app = new App();
-        app.bootStrap(tx, sm);
+        app.bootStrap(tx, sm);*/
 
-        jpa.stop();
+        ApplicationContext ac = new ClassPathXmlApplicationContext("/META-INF/spring-config.xml");
+
+        Controller controller = ac.getBean("loginController", LoginController.class);
+
+        controller.init();
+
+       // jpa.stop();
 
     }
 
     private void bootStrap(TransactionManager tx, JpaSessionManager sm) {
 
-        AccountServiceImpl accountService = new AccountServiceImpl();
+       /* AccountServiceImpl accountService = new AccountServiceImpl();
         accountService.setAccountDao(new JpaAccountDao(sm));
         accountService.setTransactionManager(tx);
 
@@ -46,9 +55,9 @@ public class App {
         bootstrap.setAccountService(accountService);
         bootstrap.setCustomerService(customerService);
 
-        Controller controller = bootstrap.wireObjects();
+        Controller controller = bootstrap.wireObjects();*/
 
         // start application
-        controller.init();
+        //controller.init();
     }
 }

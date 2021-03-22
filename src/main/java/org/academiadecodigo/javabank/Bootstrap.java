@@ -67,6 +67,7 @@ public class Bootstrap {
         LoginView loginView = new LoginView();
         loginController.setView(loginView);
         loginController.setAuthService(authService);
+
         loginView.setLoginController(loginController);
         loginView.setPrompt(prompt);
 
