@@ -175,6 +175,8 @@
     <bean name="accountFactory" class="org.academiadecodigo.javabank.factories.AccountFactory">
     </bean>
 
+   
+
 
 </beans>
 
